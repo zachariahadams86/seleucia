@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleucia - Paul's Departure Port</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        
+        .journey-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        /* Navigation */
+        .back-nav {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #5568d3;
+            transform: translateX(-4px);
+        }
+        
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Content Sections */
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        /* Scripture Box */
+        .scripture-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .scripture-ref {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .scripture-text {
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .image-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            display: block;
+        }
+        
+        .image-caption {
+            padding: 15px;
+            background: white;
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .image-caption strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .timeline-date {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8em; }
+            .section { padding: 25px; }
+            .section h2 { font-size: 1.5em; }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>⚓ Seleucia</h1>
+        <p class="subtitle">The Port Where Paul's Journey Went to Sea</p>
+        <div class="journey-badge">Step 2 • First Journey • AD 46</div>
+    </div>
+    
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="https://biblicallearning.github.io/pauls-missionary-journeys/" class="back-btn">
+            ← Back to Interactive Map
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Biblical Account -->
+        <div class="section">
+            <h2>📖 Biblical Account</h2>
+            <div class="scripture-box">
+                <span class="scripture-ref">Acts 13:4</span>
+                <p class="scripture-text">
+                    "So, being sent out by the Holy Spirit, they went down to Seleucia, and from there they sailed to Cyprus."
+                </p>
+            </div>
+            
+            <h3>Depart for Cyprus</h3>
+            <p>
+                After their commissioning in Antioch, Paul and Barnabas traveled the fifteen miles to Seleucia, the port city that served as Antioch's gateway to the Mediterranean. This seemingly simple verse marks a monumental transition—from land to sea, from the familiar to the unknown, from planning to action.
+            </p>
+            
+            <p>
+                Luke's phrase "being sent out by the Holy Spirit" emphasizes that this wasn't just a human journey. Though they physically walked the Roman road from Antioch to Seleucia, it was the Spirit who propelled them forward. Every step toward that harbor was a step of obedience to the divine commission they had received.
+            </p>
+            
+            <p>
+                The choice of Cyprus as their first destination was strategic—it was Barnabas's homeland (Acts 4:36). Starting with the familiar would ease them into cross-cultural mission work. Little did they know this "simple" port stop would launch the greatest missionary movement in history.
+            </p>
+        </div>
+        
+        <!-- Historical Context -->
+        <div class="section">
+            <h2>🏺 Historical Context: Seleucia in AD 46</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">Miles from Antioch</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">300 BC</div>
+                    <div class="stat-label">City Founded</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">Major</div>
+                    <div class="stat-label">Mediterranean Port</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100+</div>
+                    <div class="stat-label">Miles to Cyprus</div>
+                </div>
+            </div>
+            
+            <h3>The Port City</h3>
+            <p>
+                Seleucia Pieria (modern Samandağ, Turkey) was founded around 300 BC by Seleucus I Nicator, the same ruler who established Antioch. The city was strategically positioned at the mouth of the Orontes River, where it met the Mediterranean Sea. This location made it the natural seaport for Antioch and one of the most important harbors on the eastern Mediterranean coast.
+            </p>
+            
+            <p>
+                The harbor was an engineering marvel. The Romans had improved upon the original Seleucid construction, creating breakwaters and docks that could accommodate large merchant vessels and military ships. The city climbed up the slopes of Mount Pieria (Mount Musa), with the lower town devoted to port activities and the upper city housing temples, theaters, and residences.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>🌊 The Harbor</h4>
+                <p>
+                    Seleucia's harbor was more than just a dock—it was a complex of warehouses, customs houses, and shipyards. Ships from across the Mediterranean called here: grain vessels from Egypt, wine ships from Greece, merchants from Rome, and fishing boats from the Levant. The constant flow of people, goods, and ideas made it a cosmopolitan hub.
+                </p>
+            </div>
+            
+            <h3>Engineering Wonder: The Titus Tunnel</h3>
+            <p>
+                One of Seleucia's most impressive features was a massive water diversion tunnel carved through solid rock. Begun in the 1st century BC and completed under Emperor Vespasian and his son Titus (around AD 70), this tunnel was over 1,400 meters long and up to 7 meters high. It channeled mountain torrents away from the harbor, preventing siltation and flooding—a testament to Roman engineering prowess.
+            </p>
+            
+            <p>
+                While the tunnel was still under construction during Paul's visit, earlier water management systems were already in place, demonstrating the Roman commitment to maintaining this crucial port's viability.
+            </p>
+            
+            <h3>Political Climate</h3>
+            <p>
+                In AD 46, Seleucia was firmly under Roman control as part of the province of Syria. The Roman navy maintained a presence here, as the eastern Mediterranean required constant patrol against pirates and to ensure grain shipments to Rome remained secure. The Pax Romana made sea travel relatively safe, though storms and shipwrecks remained constant dangers.
+            </p>
+            
+            <p>
+                The port was also a customs point where Rome collected taxes on imported and exported goods. This meant Paul and Barnabas would have encountered Roman officials even before boarding their ship—a foretaste of the imperial bureaucracy they would navigate throughout their journeys.
+            </p>
+        </div>
+        
+        <!-- What Was Happening -->
+        <div class="section">
+            <h2>🌍 Maritime Life in AD 46</h2>
+            
+            <h3>The Sailing Season</h3>
+            <p>
+                Ancient Mediterranean sailing followed a strict seasonal pattern. The safest sailing occurred from late May to mid-September, with November to March being considered extremely dangerous (the mare clausum, or "closed sea"). Paul's departure in AD 46 would have been timed to coincide with favorable weather—likely late spring or early summer.
+            </p>
+            
+            <p>
+                Ships didn't sail on schedules like modern vessels. Passengers and cargo had to wait for favorable winds, weather, and enough fellow travelers to make the voyage profitable for the ship's owner. Paul and Barnabas may have waited days in Seleucia for the right ship to Cyprus.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>⛵ Ancient Sea Travel</h4>
+                <p>
+                    Ships of this era were primarily merchant vessels that also carried passengers. There were no passenger cabins—travelers slept on deck, brought their own food, and endured whatever weather came. The voyage to Cyprus (about 130 miles) could take anywhere from one to several days depending on wind conditions. Seasickness was common, and storms could arise suddenly.
+                </p>
+            </div>
+            
+            <h3>Port Life</h3>
+            <p>
+                Seleucia's waterfront would have been a cacophony of activity: sailors shouting, merchants haggling, cranes loading cargo, shipwrights repairing vessels. The smell of fish, tar, and sea spray mixed with spices from the East and olive oil from the West. Multiple languages filled the air—Greek, Latin, Aramaic, Phoenician, and more.
+            </p>
+            
+            <p>
+                Inns and taverns catered to travelers, though they had dubious reputations. Dock workers, sailors, merchants, soldiers, slaves, and the occasional philosopher or missionary all mingled in this cosmopolitan environment. For Paul and Barnabas, it was their first taste of the diverse Greco-Roman world they would spend years evangelizing.
+            </p>
+            
+            <h3>The Jewish Community</h3>
+            <p>
+                Like most major Mediterranean ports, Seleucia had a Jewish community. Jewish merchants and sailors used the port regularly, and there was likely a synagogue where traveling Jews could worship and find kosher food and lodging. Paul and Barnabas may have stayed with fellow Jews while waiting for their ship, using the time to share their testimony about Jesus the Messiah.
+            </p>
+        </div>
+        
+        <!-- Paul's Activities -->
+        <div class="section">
+            <h2>✝️ Paul's Time in Seleucia</h2>
+            
+            <h3>A Brief but Significant Stop</h3>
+            <p>
+                The Bible gives us only one verse about Seleucia, suggesting Paul and Barnabas didn't stay long. Their time here was transitional—leaving behind the Syrian mainland and preparing for sea travel. Yet this brief stop was laden with significance.
+            </p>
+            
+            <h3>Practical Preparations</h3>
+            <p>
+                Before sailing, Paul and Barnabas would have needed to:
+            </p>
+            <p>
+                <strong>Book passage:</strong> Negotiate with ship owners or captains for space on a Cyprus-bound vessel. As they weren't wealthy, they likely traveled on a merchant ship rather than chartering their own vessel.
+            </p>
+            <p>
+                <strong>Provision themselves:</strong> Purchase food for the journey—bread, dried fish, olives, cheese, wine. Ancient ships didn't provide meals for passengers.
+            </p>
+            <p>
+                <strong>Exchange money:</strong> Ensure they had appropriate currency for Cyprus. The island used Greek coinage primarily.
+            </p>
+            <p>
+                <strong>Protect their belongings:</strong> Secure what few possessions they carried. Theft was common in port cities.
+            </p>
+            
+            <h3>Emotional Moment</h3>
+            <p>
+                Standing on Seleucia's docks, looking out at the Mediterranean, must have been an emotional moment. This was the point of no return. Ahead lay the unknown—foreign cities, hostile audiences, physical dangers, and spiritual warfare. Behind lay the comfort of Antioch, familiar faces, and established patterns.
+            </p>
+            
+            <p>
+                For Barnabas, this was a homecoming of sorts—Cyprus was his birthplace. He was returning, but not as he had left. He was now bringing the gospel that had transformed his life.
+            </p>
+            
+            <p>
+                For Paul, this was leaving the last vestige of his old life. Beyond this harbor lay the Gentile world he was called to reach. The former Pharisee was about to spend years among the uncircumcised, eating with them, teaching them, suffering with them.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>💡 Sent by the Spirit</h4>
+                <p>
+                    Luke reminds us they were "sent out by the Holy Spirit." This wasn't a vacation or a business trip. Every wave they would cross, every storm they would weather, every city they would enter—all were part of the Spirit's sovereign plan to bring the gospel to the nations. Seleucia was where that plan moved from land to sea.
+                </p>
+            </div>
+            
+            <h3>Companions</h3>
+            <p>
+                Paul and Barnabas weren't alone. John Mark (Barnabas's cousin) accompanied them as a helper (Acts 13:5). The three men standing together on Seleucia's docks represented different backgrounds and stages of life—yet all were united in their mission to proclaim Christ.
+            </p>
+        </div>
+        
+        <!-- Archaeological Evidence -->
+        <div class="section">
+            <h2>🏛️ Archaeological & Historical Sites</h2>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="images/seleucia-harbor.jpg" alt="Seleucia Harbor" onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='0';">
+                    <div class="image-caption">
+                        <strong>Ancient Seleucia Harbor</strong><br>
+                        Ruins of the ancient harbor where Paul and Barnabas boarded their ship to Cyprus. Much of the ancient port is now underwater due to earthquakes and sea level changes over two millennia.
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <img src="images/titus-tunnel.jpg" alt="Titus Tunnel" onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='0';">
+                    <div class="image-caption">
+                        <strong>Titus Tunnel</strong><br>
+                        The remarkable Roman water diversion tunnel carved through solid rock. Over 1,400 meters long, this engineering marvel protected the harbor from siltation. Begun before Paul's time and completed decades after.
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <img src="images/seleucia-ruins.jpg" alt="Seleucia Ruins" onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='0';">
+                    <div class="image-caption">
+                        <strong>City Ruins</strong><br>
+                        Remains of ancient Seleucia climbing up Mount Pieria. The strategic position allowed the city to control both sea and land routes, making it a vital link in the Roman network.
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <img src="images/roman-ship.jpg" alt="Roman Ship" onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='0';">
+                    <div class="image-caption">
+                        <strong>Ancient Mediterranean Vessel</strong><br>
+                        Reconstruction of the type of merchant ship Paul and Barnabas would have sailed on. These vessels used a combination of square sails and rowing, carrying cargo and passengers across the Mediterranean.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 30px;">
+                <h4>📸 Historical Images</h4>
+                <p>
+                    Archaeological excavations have revealed much about Seleucia's ancient harbor and city. The site is less developed for tourism than many biblical locations, but recent work by Turkish and international archaeologists continues to uncover the remarkable engineering and urban planning of this important port city.
+                </p>
+            </div>
+            
+            <h3>Modern Samandağ</h3>
+            <p>
+                Today, the ancient site of Seleucia is near the modern Turkish town of Samandağ (formerly known as Süveydiye) in Hatay Province, very close to the Syrian border. The ancient harbor is partially submerged due to earthquakes and changes in sea level over two millennia.
+            </p>
+            
+            <p>
+                Visitors can still see impressive remains, including the Titus Tunnel, rock-cut tombs, city walls, and the necropolis. The site offers a tangible connection to the moment when Paul's missionary vision became a physical journey across the waves.
+            </p>
+        </div>
+        
+        <!-- Connection to Us -->
+        <div class="section">
+            <h2>🔗 Connection to Today</h2>
+            
+            <h3>Lessons from Seleucia</h3>
+            <p>
+                <strong>1. Transitions Matter:</strong> Seleucia represents the transition from calling to action, from preparation to execution. Sometimes the most important moments are the seemingly mundane ones—booking passage, waiting for wind, taking that first step onto the ship.
+            </p>
+            
+            <p>
+                <strong>2. Ordinary Means for Extraordinary Purposes:</strong> God used a regular merchant ship, a routine port stop, and normal Mediterranean trade routes to spread the gospel. We don't need special circumstances to do God's work—He works through the ordinary.
+            </p>
+            
+            <p>
+                <strong>3. The Cost of Obedience:</strong> Getting on that ship meant leaving safety, comfort, and certainty. Obedience to God's call often requires us to leave the harbor and venture into deep water, trusting Him with the outcome.
+            </p>
+            
+            <p>
+                <strong>4. Team Ministry:</strong> Paul, Barnabas, and John Mark stood together at Seleucia. Ministry is rarely solo work. God calls us into teams where our different strengths complement each other.
+            </p>
+            
+            <div class="highlight-box">
+                <h4>💭 Reflection Question</h4>
+                <p>
+                    What "Seleucia moments" are you facing—transition points where you must leave the familiar and trust God for the journey ahead? What keeps you from boarding the ship He's prepared for you?
+                </p>
+            </div>
+            
+            <h3>From Land to Sea</h3>
+            <p>
+                Seleucia reminds us that obedience to God often requires us to change our methods, leave our comfort zones, and trust Him in new environments. Paul would become as comfortable on ships as on roads, in port cities as in inland towns. The Spirit who sent him "down to Seleucia" would guide him across countless miles of sea and land for the rest of his life.
+            </p>
+            
+            <p>
+                Every great journey has a starting point. For Paul's first missionary journey, that point was a harbor in Seleucia where three men climbed aboard a merchant ship and set sail for Cyprus, carrying with them the message that would change the world.
+            </p>
+        </div>
+        
+        <!-- Navigation Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h2 style="color: white; border-bottom: 3px solid white;">Continue the Journey</h2>
+            <p style="font-size: 1.2em; margin: 20px 0;">
+                From Seleucia, Paul and Barnabas sailed across the Mediterranean to Salamis on the island of Cyprus.
+            </p>
+            <a href="https://biblicallearning.github.io/pauls-missionary-journeys/" class="back-btn" style="background: white; color: #667eea; margin-top: 20px;">
+                Return to Interactive Map →
+            </a>
+        </div>
+        
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p><strong>Paul's Missionary Journeys</strong></p>
+        <p>Interactive Biblical History Project</p>
+        <p style="margin-top: 15px; opacity: 0.8;">Created by Zachariah Adams © 2024</p>
+    </div>
+    
+</body>
+</html>
